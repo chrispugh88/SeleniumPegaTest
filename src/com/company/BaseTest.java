@@ -1,25 +1,29 @@
 package com.company;
 
-import com.thoughtworks.selenium.webdriven.commands.IsElementPresent;
 import org.openqa.selenium.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.awt.List;
 
-public class Main {
+import static java.lang.System.*;
+
+
+public class BaseTest {
 
     public static void main(String[] args) {
-        System.out.println("Hello Selenium");
-        System.setProperty("webdriver.chrome.driver", "/home/chris/chromedriver");
+        out.println("Hello Selenium");
+        setProperty("webdriver.chrome.driver", "/home/chris/chromedriver");
         driver = new ChromeDriver();
-        driver.get("https://paex18-eu.pegacloud.com/prweb/PRServlet/rP_YUoU5v4VpHC7zgKdtRfYWDHA1OZuBuy0m0RSuAe3jprP1sRDOB97lQGjOixzt*/!STANDARD?pzPostData=1733018079");
+        driver.get("https://paex23-use.pegacloud.com/prweb/PRServlet/beEBp4uRVTogorRwSwWqbKQhhojtVn9i8J9Zo5ruyviHnzw4qg1rm3s7oD3yApZr*/!STANDARD");
 
         WebElement idBox = driver.findElement(By.id("txtUserID"));
-        idBox.sendKeys("HR_Recruiter");
+        idBox.sendKeys("User@SAE");
         WebElement passBox = driver.findElement(By.id("txtPassword"));
-        passBox.sendKeys("password");
+        passBox.sendKeys("rules");
         WebElement submitButton = driver.findElement(By.id("sub"));
         submitButton.click();
         /*int ms = 5000;
@@ -29,6 +33,13 @@ public class Main {
         */
 //        driver.findElement(By.linkText("Create"));
         getElementWhenReady(By.linkText("Create")).click();
+        //java.util.List<WebElement> newList = (java.util.List<WebElement>) new List();
+        //newList = driver.findElements(By.id("ItemMiddle"));
+        //for
+        //String tempString = new String();
+        //getElementWhenReady(By.id("ItemMiddle")).click();
+        //out.println("Test " + getElementWhenReady(By.id("ItemMiddle")).getText());
+
         //driver.quit();
         //comment Hello everybody
     }
@@ -68,11 +79,11 @@ public class Main {
     }
 
     protected static void log(String message) {
-        System.out.println("SelLog   " + message);
+        out.println("SelLog   " + message);
     }
 
     protected static void getDriver() {
-        System.setProperty("webdriver.chrome.driver", "/home/chris/chromedriver");
+        setProperty("webdriver.chrome.driver", "/home/chris/chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.get("https://paex18-eu.pegacloud.com/prweb/PRServlet/rP_YUoU5v4VpHC7zgKdtRfYWDHA1OZuBuy0m0RSuAe3jprP1sRDOB97lQGjOixzt*/!STANDARD?pzPostData=1733018079");
     }
