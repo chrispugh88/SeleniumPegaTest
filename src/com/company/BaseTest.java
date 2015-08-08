@@ -14,39 +14,46 @@ import static java.lang.System.*;
 
 public class BaseTest {
 
-    public static void main(String[] args) {
-        out.println("Hello Selenium");
-        setProperty("webdriver.chrome.driver", "/home/chris/chromedriver");
-        driver = new ChromeDriver();
-        driver.get("https://paex23-use.pegacloud.com/prweb/PRServlet/beEBp4uRVTogorRwSwWqbKQhhojtVn9i8J9Zo5ruyviHnzw4qg1rm3s7oD3yApZr*/!STANDARD");
+    public static WebDriver driver;
 
-        WebElement idBox = driver.findElement(By.id("txtUserID"));
-        idBox.sendKeys("User@SAE");
-        WebElement passBox = driver.findElement(By.id("txtPassword"));
-        passBox.sendKeys("rules");
-        WebElement submitButton = driver.findElement(By.id("sub"));
-        submitButton.click();
-        /*int ms = 5000;
-        sleep(ms);
-        WebElement createMenu = driver.findElement(By.linkText("Create"));
-        createMenu.click();
-        */
-//        driver.findElement(By.linkText("Create"));
-        getElementWhenReady(By.linkText("Create")).click();
-        //java.util.List<WebElement> newList = (java.util.List<WebElement>) new List();
-        //newList = driver.findElements(By.id("ItemMiddle"));
-        //for
-        //String tempString = new String();
-        //getElementWhenReady(By.id("ItemMiddle")).click();
-        //out.println("Test " + getElementWhenReady(By.id("ItemMiddle")).getText());
-
-        //driver.quit();
-        //comment Hello everybody
+    protected static void completeTextBox(String inputID, String text) {
+        WebElement textBox = getElementWhenReady(By.id(inputID));
+        textBox.sendKeys(text);
     }
 
-    //System.setProperty("webdriver.chrome.driver", "/home/chris/chromedriver");
-    static WebDriver driver;
+    protected static WebElement getSubmitButton() {
+        WebElement submitButton = null;
+        for (WebElement it : driver.findElements(By.className("button"))) {
+            log(it.getAttribute("id"));
+            log(it.getText());
+        }
+        return submitButton;
+    }
 
+    protected static void login(String userID, String password) {
+        WebElement idBox = getElementWhenReady(By.id("txtUserID"));
+        idBox.sendKeys(userID);
+        WebElement passBox = getElementWhenReady(By.id("txtPassword"));
+        passBox.sendKeys(password);
+        WebElement submitButton = getElementWhenReady(By.id("sub"));
+        submitButton.click();
+    }
+
+    protected static void createCase(String caseName) {
+        getElementWhenReady(By.linkText("Create")).click();
+        WebElement createCaseButton = null;
+        int i = 0;
+        while (createCaseButton == null && i < 40) {
+            for (WebElement it : driver.findElements(By.id("ItemMiddle"))) {
+                if (it.getText().contains(caseName)) {
+                    createCaseButton = it;
+                }
+            }
+            sleep(20);
+            i++;
+        }
+        createCaseButton.click();
+    }
     protected static void sleep(int ms) {
         try {
             Thread.sleep(ms);
@@ -70,7 +77,8 @@ public class BaseTest {
             driver.findElement(by);
             return true;
         } catch (NoSuchElementException e) {
-            log("NoSuchElementException " + e.getLocalizedMessage());
+            //log("NoSuchElementException " + e.getLocalizedMessage());
+            //Suppress NoSuchElementException logging to keep things clean
             return false;
         } catch (StaleElementReferenceException e) {
             log("StaleElementReferenceException " + e.getLocalizedMessage());
@@ -84,7 +92,7 @@ public class BaseTest {
 
     protected static void getDriver() {
         setProperty("webdriver.chrome.driver", "/home/chris/chromedriver");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://paex18-eu.pegacloud.com/prweb/PRServlet/rP_YUoU5v4VpHC7zgKdtRfYWDHA1OZuBuy0m0RSuAe3jprP1sRDOB97lQGjOixzt*/!STANDARD?pzPostData=1733018079");
+        driver = new ChromeDriver();
+        driver.get("https://paex23-use.pegacloud.com/prweb/PRServlet/beEBp4uRVTogorRwSwWqbKQhhojtVn9i8J9Zo5ruyviHnzw4qg1rm3s7oD3yApZr*/!STANDARD");
     }
 }
