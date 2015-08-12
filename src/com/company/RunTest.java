@@ -1,11 +1,9 @@
 package com.company;
 
-import org.openqa.selenium.WebElement;
-
 /**
  * Created by chris on 08/08/15.
  */
-public class RunTest extends BaseTest {
+public class RunTest extends BaseMethods {
     public static void main(String[] args) {
         getDriver();
         login("User@SAE", "rules");

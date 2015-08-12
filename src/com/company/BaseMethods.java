@@ -14,7 +14,7 @@ import java.awt.List;
 import static java.lang.System.*;
 
 
-public class BaseTest {
+public class BaseMethods {
 
     public static WebDriver driver;
 
