@@ -10,15 +10,24 @@ public class RunTest extends BaseTest {
         getDriver();
         login("User@SAE", "rules");
         createCase("Candidate Case");
-        sleep(2000);
+        //sleep(2000);
         switchIFrame("PegaGadget1Ifr");
-        completeTextBox("FirstName", "Test First Name");
-        completeTextBox("LastName", "Test Last Name");
-        completeTextBox("Email", "test@company.com");
+        completeTextBoxByID("FirstName", "Test First Name");
+        completeTextBoxByID("LastName", "Test Last Name");
+        completeTextBoxByID("Email", "test@company.com");
         //completeTextBox("SSN", "12345");
-        completeTextBox("PositionAppliedFor", "Senior Software Engineer");
+        completeTextBoxByID("PositionAppliedFor", "Senior Software Engineer");
         getButton("Submit").click();
-        switchIFrame("PegaGadget1Ifr");
-        clickLink("Add Item");
+        int rows = 8;
+        for (int i = 1; i <= rows; i++) {
+            completeTextBoxByName("$PpyWorkPage$pWorkHistory$l" + i + "$pCompanyName", "Text Company " + i);
+            completeTextBoxByName("$PpyWorkPage$pWorkHistory$l" + i + "$pStartDate", "11/08/2015");
+            if (i < rows) {
+                clickLink("Add Item");
+            }
+        }
+        getButton("Submit").click();
+        //completeTextBoxByName("$PpyWorkPage$pSkills", "Selenium");
+
     }
 }

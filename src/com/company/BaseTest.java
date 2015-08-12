@@ -18,8 +18,13 @@ public class BaseTest {
 
     public static WebDriver driver;
 
-    protected static void completeTextBox(String inputID, String text) {
+    protected static void completeTextBoxByID(String inputID, String text) {
         WebElement textBox = getElementWhenReady(By.id(inputID));
+        textBox.sendKeys(text);
+    }
+
+    protected static void completeTextBoxByName(String inputName, String text) {
+        WebElement textBox = getElementWhenReady(By.name(inputName));
         textBox.sendKeys(text);
     }
 
@@ -37,7 +42,7 @@ public class BaseTest {
     }
 
     protected static void clickLink(String linkText) {
-        getElementWhenReady(By.linkText(linkText));
+        getElementWhenReady(By.linkText(linkText)).click();
     }
 
     protected static void login(String userID, String password) {
@@ -77,7 +82,7 @@ public class BaseTest {
         while (!isElementPresent(by)) {
             sleep(20);
             if (++i >= 40) throw new NoSuchElementException("Fucked");
-            log(" " + i * 20);
+            log("Waited " + i * 20 + " ms for element " + by);
         }
         return driver.findElement(by);
     }
