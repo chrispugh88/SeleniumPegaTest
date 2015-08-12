@@ -8,7 +8,6 @@ public class RunTest extends BaseMethods {
         getDriver();
         login("User@SAE", "rules");
         createCase("Candidate Case");
-        //sleep(2000);
         switchIFrame("PegaGadget1Ifr");
         completeTextBoxByID("FirstName", "Test First Name");
         completeTextBoxByID("LastName", "Test Last Name");
@@ -24,8 +23,9 @@ public class RunTest extends BaseMethods {
                 clickLink("Add Item");
             }
         }
-        getButton("Submit").click();
         //completeTextBoxByName("$PpyWorkPage$pSkills", "Selenium");
+        getButton("Submit").click();
+
 
     }
 }
