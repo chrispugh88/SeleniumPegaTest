@@ -81,7 +81,7 @@ public class BaseMethods {
         int i = 0;
         while (!isElementPresent(by)) {
             sleep(20);
-            if (++i >= 40) throw new NoSuchElementException("Fucked");
+            if (++i >= 40) throw new NoSuchElementException("Not quite working");
             log("Waited " + i * 20 + " ms for element " + by);
         }
         return driver.findElement(by);
