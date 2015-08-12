@@ -23,7 +23,7 @@ public class RunTest extends BaseMethods {
                 clickLink("Add Item");
             }
         }
-        //completeTextBoxByName("$PpyWorkPage$pSkills", "Selenium");
+        completeTextBoxByName("$PpyWorkPage$pSkills", "Selenium");
         getButton("Submit").click();
 
 
